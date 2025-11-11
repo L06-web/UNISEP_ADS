@@ -26,6 +26,7 @@ app.post("/cadastro", (request, response) => {
 
 app.get("/listar/:nome", (request, response) => {
     const { nome } = request.params;
+    
 
     const pessoa = pessoas.filter((i) => i.nome === nome);
 
