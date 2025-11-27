@@ -1,48 +1,49 @@
 import {
-    StyleSheet,
-    View,
-    Image,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    Alert
+  StyleSheet,
+  View,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert
 } from 'react-native';
 import logo from "../assets/logo.png";
 import { useState } from 'react';
 
-export default function Login() {
+export default function Login({ navigation }) {
 
-    const [user, setUser] = useState();
-    const [password, setPassword] = useState();
-    const [errorMessage, setErrorMessage] = useState();
+  const [user, setUser] = useState();
+  const [password, setPassword] = useState();
+  const [errorMessage, setErrorMessage] = useState();
 
-    const validate = () => {
+  const validate = () => {
 
     if (String(user).length < 11) {
-        setErrorMessage('Usuário inválido!');
+      setErrorMessage('Usuário inválido!');
     } else if (String(password).length < 6) {
-        setErrorMessage('Senha inválida!');
+      setErrorMessage('Senha inválida!');
     } else {
-        Alert.alert('Login', 'Login realizado com sucesso! 👍');
+      // Alert.alert('Login', 'Login realizado com sucesso! 👍');
+      navigation.navigate('perfil');
     }
-}
+  }
 
-    const handlerUser = (value) => {
-        setUser(value);
-        setErrorMessage('');
-}
+  const handlerUser = (value) => {
+    setUser(value);
+    setErrorMessage('');
+  }
 
-    const handlerPassword = (value)=>{
-        setPassword(value);
-        setErrorMessage('');
-}
+  const handlerPassword = (value) => {
+    setPassword(value);
+    setErrorMessage('');
+  }
 
-    return (
+  return (
     <View style={styles.container}>
-        <View style={styles.card}>
+      <View style={styles.card}>
         <Image
-            source={logo}
-            style={styles.logo}
+          source={logo}
+          style={styles.logo}
         />
 
         <Text style={styles.title}>Seja bem-vindo</Text>
@@ -55,7 +56,7 @@ export default function Login() {
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={user}
-          onChangeText={(value)=>{handlerUser(value)}}
+          onChangeText={(value) => { handlerUser(value) }}
         />
         <TextInput
           placeholder='Senha'
@@ -63,7 +64,7 @@ export default function Login() {
           placeholderTextColor="#9aa0a6"
           style={styles.input}
           value={password}
-          onChangeText={(value)=>{handlerPassword(value)}}
+          onChangeText={(value) => { handlerPassword(value) }}
         />
         <TouchableOpacity
           style={styles.button}
