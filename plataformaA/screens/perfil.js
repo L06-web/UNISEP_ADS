@@ -1,11 +1,13 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 
-import perfil from "../assets/guilherme.jpeg"
 
-export default function Perfil() {
+import perfil from "../assets/lucas.jpg"; 
+
+export default function Perfil({ navigation }) {
     return (
         <View style={styles.container}>
+
             <View style={styles.header}>
                 <Image
                     style={styles.avatar}
@@ -16,18 +18,31 @@ export default function Perfil() {
             </View>
 
             <View style={styles.conteudo}>
+                
                 <Text style={styles.titulo}>Meu Desempenho</Text>
                 <View style={styles.card}>
                     <Ionicons name="book-outline" size={30} color={'#0f62fe'} />
                     <View style={{ marginLeft: 12 }}>
-                        <Text style={styles.cardTitulo}>Diciplinas Ativas</Text>
-                        <Text styles={styles.cardValor}>4</Text>
+                        <Text style={styles.cardTitulo}>Disciplinas Ativas</Text>
+                        <Text style={styles.cardValor}>4</Text>
                     </View>
                 </View>
-            </View>
+                <Text style={styles.titulo}>Serviços</Text>
+                
+                <TouchableOpacity 
+                    style={styles.card} 
+                    onPress={() => navigation.navigate('carteirinha')}
+                >
+                    <Ionicons name="card-outline" size={30} color={'#c8003c'} />
+                    <View style={{ marginLeft: 12 }}>
+                        <Text style={styles.cardTitulo}>Carteirinha Digital</Text>
+                        <Text style={styles.cardValor}>Visualizar</Text>
+                    </View>
+                </TouchableOpacity>
 
+            </View>
         </View>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
@@ -56,7 +71,9 @@ const styles = StyleSheet.create({
     curso: {
         color: '#EAEAEAEA',
         fontSize: 15,
-        marginTop: 15
+        marginTop: 15,
+        textAlign: 'center',
+        paddingHorizontal: 20
     },
     conteudo: {
         flex: 1,
@@ -65,16 +82,21 @@ const styles = StyleSheet.create({
     titulo: {
         fontSize: 22,
         fontWeight: 'bold',
-        marginBottom: 15
+        marginBottom: 15,
+        marginTop: 10
     },
-    card:{
+    card: {
         backgroundColor: '#fff',
         borderRadius: 15,
         flexDirection: 'row',
-        alignItems:' center',
+        alignItems: 'center',
         padding: 15,
         marginBottom: 15,
-        flex: 0.48
+        width: '100%',
+        shadowColor: '#000',
+        shadowOpacity: 0.05,
+        shadowRadius: 5,
+        elevation: 2
     },
     cardTitulo: {
         fontSize: 14,
@@ -82,6 +104,7 @@ const styles = StyleSheet.create({
     },
     cardValor: {
         fontSize: 20,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#333'
     }
 });
